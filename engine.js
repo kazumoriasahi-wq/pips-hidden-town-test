@@ -1,0 +1,10 @@
+(function(root){'use strict';
+const worlds=[['bakery','The Little Bakery','小さなパン屋'],['harbor','Whisker Wharf','ひげねこの港'],['garden','The Glass Garden','ガラスの温室'],['market','Apricot Market','あんずの市場'],['post','Cloud Post Office','雲の郵便局'],['fair','The Starlight Fair','星あかりの広場']];
+const sets=[['sign','clock','cake','basket','plant'],['cup','bird','window','bow','cat'],['fish','flag','anchor','basket','bird'],['sign','clock','mail','cat','plant'],['flower','bird','window','mushroom','plant'],['sign','kite','flower','basket','cat'],['sign','clock','umbrella','basket','cup'],['bow','flag','window','cake','plant'],['mail','kite','window','basket','bell'],['sign','clock','bird','bow','cat'],['star','flag','bell','cake','plant'],['sign','kite','window','mushroom','bird']];
+const regions=[{x:112,y:115,w:92,h:62},{x:300,y:72,w:80,h:78},{x:435,y:142,w:84,h:72},{x:190,y:258,w:94,h:76},{x:397,y:270,w:88,h:88}];
+const levels=sets.map((kinds,i)=>({id:i,world:worlds[Math.floor(i/2)][0],name:worlds[Math.floor(i/2)][1],ja:worlds[Math.floor(i/2)][2],edition:i%2,kinds,regions}));
+function clean(raw){const p={version:1,level:0,done:[],found:[],audio:true,lang:null};if(!raw||raw.version!==1)return p;p.level=Number.isInteger(raw.level)?Math.max(0,Math.min(11,raw.level)):0;p.done=[...new Set(Array.isArray(raw.done)?raw.done.filter(n=>Number.isInteger(n)&&n>=0&&n<12):[])];p.found=[...new Set(Array.isArray(raw.found)?raw.found.filter(n=>Number.isInteger(n)&&n>=0&&n<5):[])];p.audio=raw.audio!==false;p.lang=['ja','en'].includes(raw.lang)?raw.lang:null;return p;}
+function hit(level,x,y,found=[]){if(!Number.isFinite(x)||!Number.isFinite(y))return-1;return levels[level].regions.findIndex((r,i)=>!found.includes(i)&&Math.abs(x-r.x)<=r.w/2&&Math.abs(y-r.y)<=r.h/2);}
+function find(p,i){if(!Number.isInteger(i)||i<0||i>4||p.found.includes(i))return false;p.found.push(i);if(p.found.length===5&&!p.done.includes(p.level))p.done.push(p.level);return true;}
+const api={levels,clean,hit,find};root.PipEngine=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
