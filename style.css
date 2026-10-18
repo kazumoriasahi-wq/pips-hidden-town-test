@@ -3,3 +3,7 @@
 .finish{width:100%;margin-top:12px}.wide{width:min(94vw,650px)}
 
 .reshuffle{width:100%;margin-top:9px;min-height:40px;font-size:11px;background:#c6d6ce}.picture-inner>svg{image-rendering:auto}
+
+#startup{position:fixed;inset:0;z-index:70;display:grid;place-content:center;text-align:center;padding:24px;background:#bdcdc9;color:#2d4753;font-size:14px}#startup[hidden]{display:none}.host-paused *{animation-play-state:paused!important;transition:none!important}.host-paused #confetti{visibility:hidden}
+
+html,body{touch-action:pan-y pinch-zoom!important}
