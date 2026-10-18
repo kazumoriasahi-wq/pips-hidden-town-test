@@ -16,3 +16,8 @@ The current page uses engine-v2.js and scenes.js in addition to the original mas
 The existing save key is retained. Version-1 saves keep completed passport stamps, language and sound preferences; old in-progress answer positions are cleared because the artwork changed. Version-2 saves retain the seed and partial finds. Before-change backup: PIPS-HIDDEN-TOWN-before-variety.zip outside this repository.
 
 Current checks: node --test variety-tests.cjs music-tests.cjs. Tests verify 288 generated pairs contain exactly five changed curios and identical backgrounds, deterministic restore, replay variation, all twelve distinct backgrounds and save migration. Original tests.cjs targets the archived v1 engine.
+
+## Scenery edition (v3)
+The current page loads features.js, engine-v3.js and embedded.js. Standalone rows of curios have been removed. Fourteen scene-authored architectural or organic details per composition sit on actual windows, wall joints, tree branches, bridge planks, boat seams, fabric or equipment. Five non-overlapping details change per puzzle. Remaining details and all incidental scenery are identical within the pair. A new arrangement changes their variants and selected targets; reloading preserves the exact seed and found locations.
+
+Checks: node --test embedded-tests.cjs music-tests.cjs. Tests cover all detail variants, 480 generated pairs with exactly five changes, selected hit regions, deterministic restore and v1/v2 save migration. Earlier editions retain passport stamps and sound/language preferences; their partial finds are cleared because the illustration and hit areas changed. Version-3 partial progress is preserved. Earlier source files are retained to support the background renderer and release history.
